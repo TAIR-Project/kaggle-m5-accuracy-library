@@ -212,7 +212,7 @@ def calculate_WRMSSE(train_df,calendar,prices,start_d,end_d,y_pred):
     df_pivot = pd.pivot_table(answear, index=['category'], columns = ['date'],values=['sell_num'])
     drop_columns = list(train_df.columns[6:6+int(start[2:])-1])
     drop_columns.extend(train_df.columns[6+int(end[2:]):])
-    train_df.drop(train_df.columns[371:],axis=1,inplace=True)
+    train_df.drop(train_df.columns[(end + 6):],axis=1,inplace=True)
     train_fold_df = train_df.iloc[:, :-28]
     valid_fold_df = train_df.iloc[:, -28:].copy()
     e = WRMSSEEvaluator(train_fold_df, valid_fold_df, calendar, prices)
